@@ -1,8 +1,6 @@
 package com.sparta.board4.controller;
 
-import com.sparta.board4.dto.BoardSaveRequestDto;
-import com.sparta.board4.dto.BoardSaveResponseDto;
-import com.sparta.board4.dto.BoardSimpleResponseDto;
+import com.sparta.board4.dto.*;
 import com.sparta.board4.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,5 +25,11 @@ public class BoardController {
             @RequestParam(defaultValue = "10", required = false) int size
     ){
         return ResponseEntity.ok(boardService.getBoards(page,size));
+    }
+
+    @PutMapping("/boards/{boardId}")
+    public ResponseEntity<BoardUpdateResponseDto> updateBoard(@PathVariable Long boardId,
+                                                              @RequestBody BoardUpdateRequestDto boardUpdateRequestDto){
+        return ResponseEntity.ok(boardService.updateBoard(boardId,boardUpdateRequestDto));
     }
 }
