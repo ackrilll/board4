@@ -35,4 +35,11 @@ public class BoardService {
         board.update(boardUpdateRequestDto.getTitle(),boardUpdateRequestDto.getContent());
         return new BoardUpdateResponseDto(board.getId(),board.getTitle(),board.getContent());
     }
+
+
+    @Transactional
+    public void deleteBoard(Long boardId) {
+        Board board = boardRepository.findById(boardId).orElseThrow(()->new NullPointerException("보드 못찾음"));
+        boardRepository.delete(board);
+    }
 }

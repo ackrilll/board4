@@ -32,4 +32,9 @@ public class BoardController {
                                                               @RequestBody BoardUpdateRequestDto boardUpdateRequestDto){
         return ResponseEntity.ok(boardService.updateBoard(boardId,boardUpdateRequestDto));
     }
+
+    @DeleteMapping("/boards/{boardId}")
+    public void deleteBoard(@PathVariable Long boardId){
+        boardService.deleteBoard(boardId);
+    }
 }
